@@ -2,6 +2,8 @@
 
 # Simple healthcheck which compares number of services registered in supervisord and the number of running services.
 
+echo "$(date) : $(supervisorctl status)" >> /tmp/health.log
+
 number_of_services=$(supervisorctl status |wc -l)
 running_services=$(supervisorctl status |grep RUNNING |wc -l)
 
